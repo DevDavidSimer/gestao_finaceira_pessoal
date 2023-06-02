@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestão Financeira Pessoal - Sueli Candan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        button {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .list-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .list-item {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .list-item .item-info input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .list-item .item-actions button {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestão Financeira Pessoal</h1>
+
+    <form id="addForm">
+        <label for="accountName">Nome da Conta:</label>
+        <input type="text" id="accountName" required>
+
+        <label for="dueDate">Data de Vencimento:</label>
+        <input type="date" id="dueDate" required>
+
+        <label for="amount">Valor a Pagar:</label>
+        <input type="number" id="amount" required>
+
+        <button type="submit">Adicionar Conta</button>
+    </form>
+
+    <div class="list-container">
+        <h2>Contas:</h2>
+        <div id="accountList"></div>
+    </div>
+
+    <script>
+        // Função para adicionar uma nova conta
+        function addAccount() {
+            var accountName = document.getElementById("accountName").value;
+            var dueDate = document.getElementById("dueDate").value;
+            var amount = document.getElementById("amount").value;
+
+            var accountList = document.getElementById("accountList");
+
+            // Criar elemento para a nova conta
+            var newAccount = document.createElement("div");
+            newAccount.className = "list-item";
+
+            // Criar a informação da conta
+            var accountInfo = document.createElement("div");
+            accountInfo.className = "item-info";
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            accountInfo.appendChild(checkbox);
+
+            var accountDetails = document.createElement("span");
+            accountDetails.textContent = accountName + " - Vencimento: " + dueDate + " - Valor: €" + amount;
+            accountInfo.appendChild(accountDetails);
+
+            // Criar os botões de ação
+            var actions = document.createElement("div");
+            actions.className = "item-actions";
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Excluir";
+            deleteButton.addEventListener("click", function() {
+                newAccount.remove();
+            });
+            actions.appendChild(deleteButton);
+
+            // Adicionar a informação e botões à conta
+            newAccount.appendChild(accountInfo);
+            newAccount.appendChild(actions);
+
+            // Adicionar a nova conta à lista de contas
+            accountList.appendChild(newAccount);
+
+            // Limpar os campos do formulário
+            document.getElementById("accountName").value = "";
+            document.getElementById("dueDate").value = "";
+            document.getElementById("amount").value = "";
+            }
+
+            // Adicionar evento de envio do formulário
+            document.getElementById("addForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            addAccount();
+            });
+            </script>
+            </body>
+            </html>
+
