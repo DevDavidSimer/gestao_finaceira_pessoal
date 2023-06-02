@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gestão Financeira Pessoal - Sueli Candan</title>
+    <title>Gestão Financeira Pessoal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,6 +28,7 @@
         button {
             padding: 5px;
             margin-bottom: 10px;
+            width: 100%;
         }
 
         button {
@@ -62,6 +63,23 @@
 
         .list-item .item-actions button {
             background-color: #f44336;
+        }
+
+        @media only screen and (max-width: 375px) {
+            body {
+                padding: 10px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            input[type="date"],
+            button {
+                margin-bottom: 5px;
+            }
+
+            .list-container {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -108,7 +126,7 @@
             accountInfo.appendChild(checkbox);
 
             var accountDetails = document.createElement("span");
-            accountDetails.textContent = accountName + " - Vencimento: " + dueDate + " - Valor: €" + amount;
+            accountDetails.textContent = accountName + " - Vencimento: " + dueDate + " - Valor: R$" + amount;
             accountInfo.appendChild(accountDetails);
 
             // Criar os botões de ação
@@ -118,7 +136,7 @@
             var deleteButton = document.createElement("button");
             deleteButton.textContent = "Excluir";
             deleteButton.addEventListener("click", function() {
-                newAccount.remove();
+            newAccount.remove();
             });
             actions.appendChild(deleteButton);
 
